@@ -1,95 +1,90 @@
-import Image from "next/image";
+"use client";
+
 import styles from "./page.module.css";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+
+import { useState } from "react";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { InputPrimary, PasswordInput } from "@/components";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
+  const [cpf, setCpf] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [hasError, setHasError] = useState<boolean>(false);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const handleRegisterClick = () => {
+    router.push("/register"); // Redireciona para a página register
+  };
+
+  console.log("password", password);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <div className={styles.formTitle}>
+          <CurrencyBitcoinIcon
+            sx={{ color: "var(--color-white)", margin: 0, padding: 0 }}
+            fontSize="large"
+          />
+          <h1 className={styles.title}>ank</h1>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div className={styles.form}>
+          <p className={styles.formTitle}>Acessar conta:</p>
+          <div className={styles.input}>
+            <InputPrimary
+              label="CPF"
+              variant="cpf"
+              onChange={setCpf}
+              value={cpf}
+            />
+          </div>
+          <div className={styles.input}>
+            <PasswordInput
+              hasError={hasError}
+              setHasError={setHasError}
+              onChange={setPassword}
+              value={password}
+            />
+          </div>
+          <div className={styles.button}>
+            <Button
+              variant="contained"
+              sx={{
+                minWidth: "130px",
+                width: "50%",
+                backgroundColor: "var(--color-gray-light)",
+                color: "var(--color-black)",
+                "&:hover": {
+                  backgroundColor: "var(--color-primary-light)", // Cor de fundo ao passar o mouse
+                  color: "var(--color-white)", // Cor do texto ao passar o mouse
+                },
+              }}
+            >
+              Login
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className={styles.registerContainer}>
+        <p className={styles.registerText}>Não tem uma conta?</p>
+        <Button
+          variant="text"
+          onClick={handleRegisterClick}
+          sx={{
+            minWidth: "130px",
+            backgroundColor: "var(--color-white)",
+            color: "var(--color-primary-dark)",
+            "&:hover": {
+              backgroundColor: "var(--color-primary)", // Cor de fundo ao passar o mouse
+              color: "var(--color-white)", // Cor do texto ao passar o mouse
+            },
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          Cadastre-se
+        </Button>
+      </div>
     </div>
   );
 }

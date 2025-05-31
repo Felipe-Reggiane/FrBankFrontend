@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh; /* Garante que o layout ocupe toda a altura da tela */
+  }
+  
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* O conteúdo principal ocupa o espaço restante */
+    height: 100%;
+  }
+  
+  .pageContent {
+    flex-grow: 1; /* O conteúdo da página ocupa o espaço restante abaixo do Header */
+    overflow-y: auto; /* Permite rolagem se o conteúdo for maior que a tela */
+  }
+  
+  .header {
+    height: 40px; /* Altura fixa do Header */
+    width: 100%; /* O Header ocupa toda a largura disponível */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

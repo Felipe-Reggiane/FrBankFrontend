@@ -1,0 +1,76 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    min-width: 130px;
+    min-height: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.formContainerMobile{
+    display: flex;
+    flex-direction: column;
+    min-width: 130px;
+    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.nameContainer{
+    width: 100%;
+}
+
+.infosContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.infosContainerMobile{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.description{
+    color: var(--color-white);
+    font-size: 16px;
+    line-height: 36.5px;
+}

@@ -1,0 +1,19 @@
+.drawerPaper,
+.drawerPaperMobile {
+    background-color: var(--color-primary) !important;
+    height: 100vh;
+    border-radius: 0px 0px 48px 0px;
+    overflow-y: hidden !important;
+    padding-bottom: 70px;
+}
+
+.drawerContainer{
+    background-color: var(--color-primary);
+}
+
+.menuContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 52px;
+}
