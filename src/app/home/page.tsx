@@ -1,4 +1,9 @@
+"use client";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
+
 const Home = () => {
+  useAuthGuard(true);
+
   return (
     <div>
       <h1>Welcome to the Home Page</h1>

@@ -1,0 +1,7 @@
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  width: 100%;
+  padding: 20px;
+}

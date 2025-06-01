@@ -7,18 +7,42 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { InputPrimary, PasswordInput } from "@/components";
+import { login } from "@/services/authService";
+import { useAuth } from "@/context/AuthContext";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 
 export default function Home() {
+  useAuthGuard(false);
   const router = useRouter();
   const [cpf, setCpf] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [hasError, setHasError] = useState<boolean>(false);
+
+  const [isCpfValid, setIsCpfValid] = useState<boolean>(false);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
+
+  const { loginSaveToken } = useAuth();
 
   const handleRegisterClick = () => {
     router.push("/register"); // Redireciona para a página register
   };
 
   console.log("password", password);
+
+  const onLoginClick = async () => {
+    try {
+      const response = await login({ cpf, password });
+      const data = await response.json();
+      if (!response.ok) {
+        alert(data.erro || "Erro ao logar");
+        return;
+      }
+      loginSaveToken(data.token);
+      router.push("/home");
+    } catch (err) {
+      alert("Erro de conexão com o servidor");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -38,6 +62,7 @@ export default function Home() {
               variant="cpf"
               onChange={setCpf}
               value={cpf}
+              setIsValid={setIsCpfValid}
             />
           </div>
           <div className={styles.input}>
@@ -46,11 +71,14 @@ export default function Home() {
               setHasError={setHasError}
               onChange={setPassword}
               value={password}
+              setIsValid={setIsPasswordValid}
             />
           </div>
           <div className={styles.button}>
             <Button
               variant="contained"
+              onClick={onLoginClick}
+              disabled={!isCpfValid || !isPasswordValid}
               sx={{
                 minWidth: "130px",
                 width: "50%",

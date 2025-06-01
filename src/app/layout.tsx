@@ -6,6 +6,7 @@ import { DrawerProvider } from "@/context/DrawerContext";
 
 import { Roboto } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { AuthProvider } from "@/context/AuthContext";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const canShowLayoutWrapper = pathname !== "/" && pathname !== "/register";
+  const isAuthPage = pathname === "/" || pathname === "/register";
+  const isNotFoundPage = pathname === "/not-found"; // Se você criar uma rota /not-found
+
+  const canShowLayoutWrapper = !isAuthPage && !isNotFoundPage;
   return (
     <html lang="en">
       <body
@@ -28,13 +32,15 @@ export default function RootLayout({
           overflowX: "hidden",
         }}
       >
-        <DrawerProvider>
-          {canShowLayoutWrapper ? (
-            <LayoutWrapper> {children}</LayoutWrapper>
-          ) : (
-            children
-          )}
-        </DrawerProvider>
+        <AuthProvider>
+          <DrawerProvider>
+            {canShowLayoutWrapper ? (
+              <LayoutWrapper> {children}</LayoutWrapper>
+            ) : (
+              children
+            )}
+          </DrawerProvider>
+        </AuthProvider>
       </body>
     </html>
   );

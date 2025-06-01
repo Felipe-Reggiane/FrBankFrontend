@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import { Button, useMediaQuery } from "@mui/material";
 import { PasswordInput, InputPrimary } from "@/components";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/services/clientService";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 
 export default function RegisterScreen() {
+  useAuthGuard(false);
+
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -30,7 +34,24 @@ export default function RegisterScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCpfValid, isNameValid, isPasswordValid, isPhoneValid]);
 
+  const onRegisterClick = async () => {
+    try {
+      console.log(name, cpf, password, phone);
+      const response = await createClient({ name, cpf, password, phone });
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data.erro || "Erro ao cadastrar");
+        return;
+      }
+      alert("Cadastrado com sucesso!");
+      router.push("/");
+    } catch (err) {
+      alert("Erro de conexão com o servidor");
+    }
+  };
+
   const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Registro de Clientes</h1>
@@ -78,10 +99,7 @@ export default function RegisterScreen() {
             <Button
               variant="contained"
               disabled={!isButtonEnabled}
-              onClick={() => {
-                alert("Cadastrado com sucesso!");
-                router.push("/home");
-              }}
+              onClick={onRegisterClick}
               sx={{
                 minWidth: "130px",
                 width: "50%",

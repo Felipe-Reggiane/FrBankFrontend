@@ -4,6 +4,13 @@ import React from "react";
 
 import styles from "./DrawerMenu.module.css";
 import { useDrawer } from "@/context/DrawerContext";
+import MenuButton from "../menuButton/MenuButton";
+
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import FolderSharedIcon from "@mui/icons-material/FolderShared";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+
 interface DrawerMenuProps {
   data?: any;
   drawerWidth: number;
@@ -20,14 +27,52 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
 
   const RenderMenuContent = () => (
     <div className={styles.menuContent}>
-      <h1>Menu</h1>
+      <MenuButton
+        icon={<FolderSharedIcon />}
+        text="Editar Perfil"
+        redirectTo={"/"}
+      ></MenuButton>
+      <MenuButton
+        icon={<PersonAddAltIcon />}
+        text="Contas"
+        redirectTo={"/accounts"}
+      ></MenuButton>
+      <MenuButton
+        icon={<CurrencyExchangeIcon />}
+        text="Transação"
+        redirectTo={"/"}
+      ></MenuButton>
+      <MenuButton
+        icon={<ReceiptIcon />}
+        text="Extrato"
+        redirectTo={"/"}
+      ></MenuButton>
     </div>
   );
 
   const RenderTemporaryMenuContent = () => (
     <div className={styles.menuContent}>
-      <h1>Menu</h1>
       <Button onClick={handleDrawerClose}>Fechar</Button>
+      <MenuButton
+        icon={<FolderSharedIcon />}
+        text="Edfitar Perfil"
+        redirectTo={"/"}
+      ></MenuButton>
+      <MenuButton
+        icon={<PersonAddAltIcon />}
+        text="Contas"
+        redirectTo={"/accounts"}
+      ></MenuButton>
+      <MenuButton
+        icon={<CurrencyExchangeIcon />}
+        text="Transação"
+        redirectTo={"/"}
+      ></MenuButton>
+      <MenuButton
+        icon={<ReceiptIcon />}
+        text="Extrato"
+        redirectTo={"/"}
+      ></MenuButton>
     </div>
   );
 
