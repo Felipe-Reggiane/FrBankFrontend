@@ -1,0 +1,92 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .containerMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .header {
+    font-weight: bold;
+    margin-bottom: 16px;
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+    word-break: break-word;
+  }
+  
+  .cards {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+  }
+  
+  .cardsMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .card {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .cardValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+  
+  .chartPaper {
+    width: 100%;
+    max-width: 800px;
+    padding: 24px;
+    margin-top: 16px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  .chartPaperMobile {
+    padding: 8px;
+  }
+  
+  .chartTitle {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  
+  .error {
+    color: #d32f2f;
+    text-align: center;
+    margin-top: 32px;
+  }

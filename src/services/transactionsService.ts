@@ -1,11 +1,13 @@
 import { apiFetch } from "./apiFetch";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function debitAccount(
   token: string,
   accountNumber: string,
   value: number
 ) {
-  const response = await apiFetch("http://localhost:3000/transactions/debit", {
+  const response = await apiFetch(`${API_URL}/transactions/debit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +26,7 @@ export async function creditAccount(
   accountNumber: string,
   value: number
 ) {
-  const response = await apiFetch("http://localhost:3000/transactions/credit", {
+  const response = await apiFetch(`${API_URL}/transactions/credit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +41,7 @@ export async function creditAccount(
 }
 
 export async function getAllTransactions(token: string) {
-  const response = await apiFetch("http://localhost:3000/transactions/", {
+  const response = await apiFetch(`${API_URL}/transactions/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -52,14 +54,11 @@ export async function getTransactionsByAccount(
   token: string,
   accountNumber: string
 ) {
-  const response = await apiFetch(
-    `http://localhost:3000/transactions/${accountNumber}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await apiFetch(`${API_URL}/transactions/${accountNumber}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response) return [];
   return response.json();
 }

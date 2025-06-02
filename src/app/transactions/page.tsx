@@ -1,12 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import {
-  Box,
   Button,
   MenuItem,
   Select,
   TextField,
-  Typography,
   InputLabel,
   FormControl,
   Autocomplete,
@@ -14,6 +12,7 @@ import {
 import { getAccounts } from "@/services/accountsService";
 import { debitAccount, creditAccount } from "@/services/transactionsService";
 import { useAuthGuard } from "@/hooks/useAuthGuard";
+import styles from "./transactions.module.css";
 
 export default function Transactions() {
   useAuthGuard(true);
@@ -79,10 +78,8 @@ export default function Transactions() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, mx: "auto", mt: 4, paddingInline: 2 }}>
-      <Typography variant="h5" gutterBottom>
-        Nova Transação
-      </Typography>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Nova Transação</h2>
       <Autocomplete
         options={accounts}
         getOptionLabel={(option) =>
@@ -132,6 +129,6 @@ export default function Transactions() {
       >
         Finalizar Transação
       </Button>
-    </Box>
+    </div>
   );
 }

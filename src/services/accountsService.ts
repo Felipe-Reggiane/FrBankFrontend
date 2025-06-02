@@ -1,7 +1,9 @@
 import { apiFetch } from "./apiFetch";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function getAccounts(token: string) {
-  const response = await apiFetch("http://localhost:3000/accounts/", {
+  const response = await apiFetch(`${API_URL}/accounts/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -13,7 +15,7 @@ export async function getAccounts(token: string) {
 }
 
 export async function createAccount(token: string) {
-  const response = await apiFetch("http://localhost:3000/accounts/create", {
+  const response = await apiFetch(`${API_URL}/accounts/create`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,

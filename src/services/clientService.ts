@@ -1,3 +1,7 @@
+import { apiFetch } from "./apiFetch";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function createClient({
   name,
   cpf,
@@ -9,7 +13,7 @@ export async function createClient({
   password: string;
   phone: string;
 }) {
-  const response = await fetch("http://localhost:3000/clientes", {
+  const response = await apiFetch(`${API_URL}/clientes`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -27,7 +31,7 @@ export async function updateClient(
   data: { phone?: string; password?: string },
   token: string
 ) {
-  return fetch(`http://localhost:3000/clientes/${id}`, {
+  return apiFetch(`${API_URL}/clientes/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -35,4 +39,20 @@ export async function updateClient(
     },
     body: JSON.stringify(data),
   });
+}
+
+export async function getDetalhamento(
+  token: string,
+  clientId: string | number
+) {
+  const response = await apiFetch(
+    `${API_URL}/clientes/${clientId}/detalhamento`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (response && !response.ok) throw new Error("Erro ao buscar detalhamento");
+  return response;
 }

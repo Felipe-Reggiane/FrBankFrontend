@@ -1,3 +1,4 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function login({
   cpf,
   password,
@@ -5,7 +6,7 @@ export async function login({
   cpf: string;
   password: string;
 }) {
-  const response = await fetch("http://localhost:3000/auth/login", {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
