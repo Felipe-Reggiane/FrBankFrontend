@@ -2,7 +2,6 @@
 import styles from "./Accounts.module.css";
 import { useEffect, useState } from "react";
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -10,8 +9,9 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
   TablePagination,
+  TextField,
+  useMediaQuery,
 } from "@mui/material";
 import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { createAccount, getAccounts } from "@/services/accountsService";
@@ -23,7 +23,10 @@ const Accounts = () => {
   const [accounts, setAccounts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
+  const [filter, setFilter] = useState("");
   const rowsPerPage = 6;
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const fetchAccounts = async () => {
     setLoading(true);
@@ -53,17 +56,45 @@ const Accounts = () => {
     setPage(newPage);
   };
 
-  // Paginação dos dados
-  const paginatedAccounts = accounts.slice(
+  // Filtra as contas pelo número digitado
+  const filteredAccounts = accounts.filter((account) =>
+    account.number.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  // Paginação dos dados filtrados
+  const paginatedAccounts = filteredAccounts.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
 
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>
-        Contas
-      </Typography>
+    <div className={styles.container}>
+      <div
+        className={
+          isMobile ? styles.filterContainermobile : styles.filterContainer
+        }
+      >
+        <TextField
+          label="Filtrar por número da conta"
+          variant="outlined"
+          size="small"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value);
+            setPage(0); // volta para a primeira página ao filtrar
+          }}
+          sx={{
+            "& label.Mui-focused": {
+              color: "var(--color-primary)",
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+              {
+                borderColor: "var(--color-primary)",
+              },
+            width: "225px",
+          }}
+        />
+      </div>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -79,7 +110,7 @@ const Accounts = () => {
                 <TableCell>R$ {Number(account.balance).toFixed(2)}</TableCell>
               </TableRow>
             ))}
-            {accounts.length === 0 && !loading && (
+            {filteredAccounts.length === 0 && !loading && (
               <TableRow>
                 <TableCell colSpan={2}>Nenhuma conta encontrada.</TableCell>
               </TableRow>
@@ -88,14 +119,18 @@ const Accounts = () => {
         </Table>
         <TablePagination
           component="div"
-          count={accounts.length}
+          count={filteredAccounts.length}
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
           rowsPerPageOptions={[rowsPerPage]}
         />
       </TableContainer>
-      <div className={styles.buttonContainer}>
+      <div
+        className={
+          isMobile ? styles.buttonContainerMobile : styles.buttonContainer
+        }
+      >
         <ButtonDefault
           handleClick={handleCreateAccount}
           text="Criar Nova Conta"

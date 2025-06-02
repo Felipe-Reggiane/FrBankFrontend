@@ -18,6 +18,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(!!token);
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+
+    const handleLogout = () => setIsAuthenticated(false);
+    window.addEventListener("logout", handleLogout);
+
+    return () => window.removeEventListener("logout", handleLogout);
+  }, []);
+
   const loginSaveToken = (token: string) => {
     localStorage.setItem("token", token);
     setIsAuthenticated(true);

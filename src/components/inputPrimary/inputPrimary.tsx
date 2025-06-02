@@ -10,6 +10,7 @@ interface InputProps {
   variant?: "phone" | "cpf" | "cash" | "text";
   disabled?: boolean;
   setIsValid: (isValid: boolean) => void;
+  inputVariant?: "outlined" | "filled" | "standard";
 }
 
 const InputPrimary = ({
@@ -19,6 +20,7 @@ const InputPrimary = ({
   variant,
   disabled,
   setIsValid,
+  inputVariant = "outlined",
 }: InputProps) => {
   const [hasError, setHasError] = useState<boolean>(false);
 
@@ -61,7 +63,7 @@ const InputPrimary = ({
       <TextField
         id="outlined-basic"
         label={label}
-        variant="outlined"
+        variant={inputVariant}
         onChange={handleChange}
         error={hasError} // Exibe erro se houver erro de validação ou erro passado como prop
         value={value}
@@ -70,35 +72,71 @@ const InputPrimary = ({
           maxLength: variant === "cpf" ? 14 : undefined, // Define o tamanho máximo para senha
         }}
         sx={{
-          "& .MuiOutlinedInput-root": {
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: hasError
-                ? "var(--color-error)" // Cor da borda em estado de erro
-                : "var(--color-gray-light)", // Cor padrão da borda
+          width: "100%",
+          // Outlined styles
+          ...(inputVariant === "outlined" && {
+            "& .MuiOutlinedInput-root": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: hasError
+                  ? "var(--color-error)"
+                  : "var(--color-gray-light)",
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: hasError
+                  ? "var(--color-error)"
+                  : "var(--color-gray-light)",
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: hasError
+                  ? "var(--color-error)"
+                  : "var(--color-white)",
+              },
             },
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: hasError
-                ? "var(--color-error)" // Cor da borda ao passar o mouse em estado de erro
-                : "var(--color-gray-light)", // Cor da borda ao passar o mouse
+            "& .MuiOutlinedInput-input": {
+              color: "var(--color-white)",
             },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: hasError
-                ? "var(--color-error)" // Cor da borda em foco em estado de erro
-                : "var(--color-white)", // Cor da borda em foco
+            "& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline":
+              {
+                borderColor: "var(--color-gray-light)",
+              },
+          }),
+          // Standard styles
+          ...(inputVariant === "standard" && {
+            "& .MuiInput-input": {
+              color: "var(--color-white)",
             },
-          },
+            "& .MuiInput-underline:before": {
+              borderBottomColor: hasError
+                ? "var(--color-error)"
+                : "var(--color-gray-light)",
+            },
+            "& .MuiInput-underline:hover:before": {
+              borderBottomColor: hasError
+                ? "var(--color-error)"
+                : "var(--color-gray-light)",
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: hasError
+                ? "var(--color-error)"
+                : "var(--color-white)",
+            },
+            "&.Mui-disabled .MuiInput-underline:before": {
+              borderBottomColor: "var(--color-gray-light)",
+            },
+          }),
+          // Label styles (aplicam para ambos)
           "& .MuiInputLabel-root": {
-            color: "var(--color-gray-light)", // Cor padrão do label
+            color: "var(--color-gray-light)",
             "&.Mui-focused": {
-              color: hasError ? "var(--color-error)" : "var(--color-white)", // Cor do label em foco
+              color: hasError ? "var(--color-error)" : "var(--color-white)",
             },
             "&.Mui-error": {
-              color: "var(--color-error)", // Cor do label em estado de erro
+              color: "var(--color-error)",
             },
           },
-          width: "100%",
-          "& .MuiOutlinedInput-input": {
-            color: "var(--color-white)", // Cor do texto digitado
+          "& .Mui-disabled": {
+            color: "var(--color-white) !important",
+            WebkitTextFillColor: "var(--color-white) !important",
           },
         }}
       />

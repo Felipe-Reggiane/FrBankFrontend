@@ -9,7 +9,6 @@ export async function createClient({
   password: string;
   phone: string;
 }) {
-  console.log("create", name, cpf, password, phone);
   const response = await fetch("http://localhost:3000/clientes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -21,4 +20,19 @@ export async function createClient({
     }),
   });
   return response;
+}
+
+export async function updateClient(
+  id: string,
+  data: { phone?: string; password?: string },
+  token: string
+) {
+  return fetch(`http://localhost:3000/clientes/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
 }

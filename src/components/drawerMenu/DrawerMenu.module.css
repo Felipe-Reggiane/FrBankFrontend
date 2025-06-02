@@ -11,10 +11,25 @@
     background-color: var(--color-primary);
 }
 
+.closeButton{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
 .menuContent {
     display: flex;
     flex-direction: column;
     height: 100%;
     gap: 30px;
     padding: 30px;
+    justify-content: flex-start;
+}
+
+.menuFooter {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

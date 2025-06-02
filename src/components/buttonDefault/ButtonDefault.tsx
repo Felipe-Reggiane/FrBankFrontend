@@ -1,18 +1,25 @@
 import styles from "./ButtonDefault.module.css";
 import { Button } from "@mui/material";
 
-interface MenuButtonProps {
+interface ButtonDefaultProps {
   handleClick: () => void;
   text: string;
   icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
-const MenuButton = ({ handleClick, text, icon }: MenuButtonProps) => {
+const ButtonDefault = ({
+  handleClick,
+  text,
+  icon,
+  disabled,
+}: ButtonDefaultProps) => {
   return (
     <div className={styles.buttonContainer}>
       <Button
         startIcon={icon ? icon : undefined}
         onClick={handleClick}
+        disabled={disabled}
         sx={{
           width: "100%",
           height: "100%",
@@ -29,4 +36,4 @@ const MenuButton = ({ handleClick, text, icon }: MenuButtonProps) => {
     </div>
   );
 };
-export default MenuButton;
+export default ButtonDefault;

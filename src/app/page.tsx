@@ -27,8 +27,6 @@ export default function Home() {
     router.push("/register"); // Redireciona para a página register
   };
 
-  console.log("password", password);
-
   const onLoginClick = async () => {
     try {
       const response = await login({ cpf, password });

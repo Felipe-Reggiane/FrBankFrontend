@@ -1,7 +1,35 @@
+.container{
+  padding-inline: 20px;
+}
+
+.filterContainer{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding-block: 20px;
+}
+
+.filterContainermobile{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-block: 20px;
+}
+
 .buttonContainer {
   display: flex;
   justify-content: end;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
-  padding: 20px;
+  padding-block: 20px;
+}
+
+.buttonContainerMobile{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-block: 20px;
 }
