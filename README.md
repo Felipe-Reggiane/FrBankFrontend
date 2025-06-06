@@ -18,16 +18,10 @@ npm ou Yarn
 🛠️ Instalação
 Clone o repositório:
 
-bash
-Copiar
-Editar
 git clone https://github.com/Felipe-Reggiane/FrBankFrontend.git
 cd FrBankFrontend
 Instale as dependências:
 
-bash
-Copiar
-Editar
 npm install
 
 # ou
@@ -36,9 +30,6 @@ yarn install
 ▶️ Executando a Aplicação
 Inicie o servidor de desenvolvimento:
 
-bash
-Copiar
-Editar
 npm run dev
 
 # ou
