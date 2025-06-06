@@ -28,27 +28,34 @@ Clone o repositório:
 ```bash
 git clone https://github.com/Felipe-Reggiane/FrBankFrontend.git
 cd FrBankFrontend
+```
 
 Instale as dependências:
 
-bash
-Copiar
-Editar
+```bash
 npm install
-# ou
-yarn install
+```
 
-▶️ Executando a Aplicação
+# ou
+
+```bash
+yarn install
+```
+
+## ▶️ Executando a Aplicação
+
 Inicie o servidor de desenvolvimento:
 
-bash
-Copiar
-Editar
+```bash
 npm run dev
+```
+
 # ou
+
+```bash
 yarn dev
+```
+
 Acesse a aplicação no navegador:
 
 http://localhost:3000
-
-```
