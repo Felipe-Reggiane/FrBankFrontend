@@ -9,25 +9,3 @@
     font-weight: 600;
     text-align: center;
 }
-
-/* Inputs e labels em foco */
-:global(.MuiInputLabel-root.Mui-focused) {
-    color: var(--color-primary) !important;
-  }
-  :global(.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline) {
-    border-color: var(--color-primary) !important;
-  }
-  :global(.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline) {
-    border-color: var(--color-primary) !important;
-  }
-  :global(.MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline) {
-    border-color: var(--color-primary) !important;
-  }
-  
-  /* Botão habilitado */
-  :global(.MuiButton-containedPrimary) {
-    background-color: var(--color-primary);
-  }
-  :global(.MuiButton-containedPrimary:hover) {
-    background-color: var(--color-primary-dark);
-  }

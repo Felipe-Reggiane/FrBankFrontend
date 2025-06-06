@@ -9,6 +9,10 @@
     min-width: 280px;
 }
 
+.title{
+    text-align: center;
+}
+
 .filterContainerMobile{
     display: flex;
     gap: 20px;

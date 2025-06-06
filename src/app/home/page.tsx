@@ -6,6 +6,7 @@ import { getDetalhamento } from "@/services/clientService";
 import { jwtDecode } from "jwt-decode";
 import { useAuthGuard } from "@/hooks/useAuthGuard";
 import styles from "./home.module.css";
+import { useMediaQuery } from "@mui/material";
 
 type Detalhamento = {
   contas: number;
@@ -15,7 +16,7 @@ type Detalhamento = {
 
 export default function Dashboard() {
   useAuthGuard(true);
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [detalhamento, setDetalhamento] = useState<Detalhamento | null>(null);
   const [loading, setLoading] = useState(true);
 

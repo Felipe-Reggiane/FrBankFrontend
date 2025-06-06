@@ -84,9 +84,7 @@ const Extract = () => {
 
   return (
     <div className={styles.container}>
-      <Typography variant="h5" gutterBottom>
-        Extrato de Transações
-      </Typography>
+      <h1 className={styles.title}>Extrato de Transações</h1>
       <div
         className={
           (isMobile || isMenuStatic) && !isTablet

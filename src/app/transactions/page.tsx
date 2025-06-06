@@ -79,7 +79,7 @@ export default function Transactions() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Nova Transação</h2>
+      <h1 className={styles.title}>Nova Transação</h1>
       <Autocomplete
         options={accounts}
         getOptionLabel={(option) =>
