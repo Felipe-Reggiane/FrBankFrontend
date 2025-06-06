@@ -36,7 +36,7 @@ Instale as dependências:
 npm install
 ```
 
-# ou
+ou
 
 ```bash
 yarn install
@@ -50,7 +50,7 @@ Inicie o servidor de desenvolvimento:
 npm run dev
 ```
 
-# ou
+ou
 
 ```bash
 yarn dev
