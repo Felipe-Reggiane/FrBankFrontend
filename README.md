@@ -1,40 +1,54 @@
-💰 FrBankFrontend
+# 💰 FrBankFrontend
+
 Interface web do FrBank, um projeto de aplicação bancária desenvolvido com Next.js e TypeScript.
 
-🚀 Tecnologias Utilizadas
-Next.js – Framework React para aplicações web.
+---
 
-TypeScript – Superset do JavaScript com tipagem estática.
+## 🚀 Tecnologias Utilizadas
 
-Geist – Fonte otimizada automaticamente via next/font.
+- [Next.js](https://nextjs.org/) – Framework React para aplicações web.
+- [TypeScript](https://www.typescriptlang.org/) – Superset do JavaScript com tipagem estática.
+- [Geist](https://vercel.com/font) – Fonte otimizada automaticamente via `next/font`.
 
-📦 Pré-requisitos
+---
+
+## 📦 Pré-requisitos
+
 Antes de começar, certifique-se de ter instalado:
 
-Node.js (versão recomendada: 16 ou superior)
+- [Node.js](https://nodejs.org/) (versão recomendada: 16 ou superior)
+- [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 
-npm ou Yarn
+---
 
-🛠️ Instalação
+## 🛠️ Instalação
+
 Clone o repositório:
 
+```bash
 git clone https://github.com/Felipe-Reggiane/FrBankFrontend.git
 cd FrBankFrontend
+
 Instale as dependências:
 
+bash
+Copiar
+Editar
 npm install
-
 # ou
-
 yarn install
 
 ▶️ Executando a Aplicação
 Inicie o servidor de desenvolvimento:
 
+bash
+Copiar
+Editar
 npm run dev
-
 # ou
-
 yarn dev
+Acesse a aplicação no navegador:
 
-Acesse http://localhost:3000 no seu navegador para visualizar a aplicação.
+http://localhost:3000
+
+```
