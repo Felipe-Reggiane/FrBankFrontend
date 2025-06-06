@@ -27,6 +27,7 @@ npm install
 # ou
 
 yarn install
+
 ▶️ Executando a Aplicação
 Inicie o servidor de desenvolvimento:
 
@@ -35,4 +36,5 @@ npm run dev
 # ou
 
 yarn dev
+
 Acesse http://localhost:3000 no seu navegador para visualizar a aplicação.
