@@ -25,7 +25,7 @@ export default function Home() {
   const API_URL = process.env._API_URL;
 
   const handleRegisterClick = () => {
-    router.push("/register"); // Redireciona para a página register
+    router.push("/register");
   };
 
   const onLoginClick = async () => {
@@ -85,8 +85,8 @@ export default function Home() {
                 backgroundColor: "var(--color-gray-light)",
                 color: "var(--color-black)",
                 "&:hover": {
-                  backgroundColor: "var(--color-primary-light)", // Cor de fundo ao passar o mouse
-                  color: "var(--color-white)", // Cor do texto ao passar o mouse
+                  backgroundColor: "var(--color-primary-light)",
+                  color: "var(--color-white)",
                 },
               }}
             >
@@ -105,8 +105,8 @@ export default function Home() {
             backgroundColor: "var(--color-white)",
             color: "var(--color-primary-dark)",
             "&:hover": {
-              backgroundColor: "var(--color-primary)", // Cor de fundo ao passar o mouse
-              color: "var(--color-white)", // Cor do texto ao passar o mouse
+              backgroundColor: "var(--color-primary)",
+              color: "var(--color-white)",
             },
           }}
         >

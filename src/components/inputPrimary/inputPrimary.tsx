@@ -65,11 +65,11 @@ const InputPrimary = ({
         label={label}
         variant={inputVariant}
         onChange={handleChange}
-        error={hasError} // Exibe erro se houver erro de validação ou erro passado como prop
+        error={hasError}
         value={value}
         disabled={disabled}
         inputProps={{
-          maxLength: variant === "cpf" ? 14 : undefined, // Define o tamanho máximo para senha
+          maxLength: variant === "cpf" ? 14 : undefined,
         }}
         sx={{
           width: "100%",

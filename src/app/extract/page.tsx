@@ -36,7 +36,6 @@ const Extract = () => {
   const isTablet = useMediaQuery("(min-width:651px) and (max-width:768px)");
   const isMenuStatic = useMediaQuery("(max-width: 950px)");
 
-  // Busca contas do cliente
   useEffect(() => {
     const fetchAccounts = async () => {
       const token = localStorage.getItem("token");
@@ -47,7 +46,6 @@ const Extract = () => {
     fetchAccounts();
   }, []);
 
-  // Busca todas as transações ao carregar a página
   useEffect(() => {
     const fetchTransactions = async () => {
       setLoading(true);
@@ -60,7 +58,6 @@ const Extract = () => {
     fetchTransactions();
   }, []);
 
-  // Busca transações da conta selecionada
   const handleFilterByAccount = async () => {
     if (!selectedAccount) return;
     setLoading(true);
@@ -71,7 +68,6 @@ const Extract = () => {
     setLoading(false);
   };
 
-  // Voltar a mostrar todas as transações
   const handleShowAll = async () => {
     setSelectedAccount(null);
     setLoading(true);
@@ -158,7 +154,7 @@ const Extract = () => {
           maxWidth: isMobile ? 280 : isMenuStatic && !isTablet ? 430 : "100%",
           minWidth: 0,
           overflowX: "auto",
-          margin: isMobile ? "0 auto" : undefined, // centraliza no mobile
+          margin: isMobile ? "0 auto" : undefined,
         }}
       >
         <Table size={isMobile ? "small" : "medium"}>

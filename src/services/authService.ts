@@ -11,7 +11,7 @@ export async function login({
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       cpf,
-      senha: password, // O backend espera 'senha'
+      password,
     }),
   });
   return response;

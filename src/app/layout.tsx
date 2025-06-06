@@ -10,7 +10,7 @@ import { AuthProvider } from "@/context/AuthContext";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // Escolha os pesos que deseja usar
+  weight: ["400", "500", "700"],
 });
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   const pathname = usePathname();
 
   const isAuthPage = pathname === "/" || pathname === "/register";
-  const isNotFoundPage = pathname === "/not-found"; // Se você criar uma rota /not-found
+  const isNotFoundPage = pathname === "/not-found";
 
   const canShowLayoutWrapper = !isAuthPage && !isNotFoundPage;
   return (

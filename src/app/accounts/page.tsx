@@ -49,19 +49,17 @@ const Accounts = () => {
     if (!token) return;
     await createAccount(token);
     fetchAccounts();
-    setPage(0); // volta para a primeira página ao criar nova conta
+    setPage(0);
   };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  // Filtra as contas pelo número digitado
   const filteredAccounts = accounts.filter((account) =>
     account.number.toLowerCase().includes(filter.toLowerCase())
   );
 
-  // Paginação dos dados filtrados
   const paginatedAccounts = filteredAccounts.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -81,7 +79,7 @@ const Accounts = () => {
           value={filter}
           onChange={(e) => {
             setFilter(e.target.value);
-            setPage(0); // volta para a primeira página ao filtrar
+            setPage(0);
           }}
           sx={{
             "& label.Mui-focused": {

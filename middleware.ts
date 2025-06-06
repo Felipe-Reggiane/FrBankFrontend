@@ -7,19 +7,16 @@ export function middleware(request: NextRequest) {
   const isAuth = !!token;
   let { pathname } = request.nextUrl;
 
-  // Normaliza pathname (remove barra final, exceto para "/")
   if (pathname !== "/" && pathname.endsWith("/")) {
     pathname = pathname.slice(0, -1);
   }
 
   const isPublic = publicRegex.test(pathname);
 
-  // Usuário deslogado tentando acessar rota protegida
   if (!isAuth && !isPublic) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // Usuário logado tentando acessar login ou registro
   if (isAuth && isPublic) {
     return NextResponse.redirect(new URL("/home", request.url));
   }

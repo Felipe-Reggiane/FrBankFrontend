@@ -106,8 +106,8 @@ export default function RegisterScreen() {
                 backgroundColor: "var(--color-gray-light)",
                 color: "var(--color-black)",
                 "&:hover": {
-                  backgroundColor: "var(--color-primary-light)", // Cor de fundo ao passar o mouse
-                  color: "var(--color-white)", // Cor do texto ao passar o mouse
+                  backgroundColor: "var(--color-primary-light)",
+                  color: "var(--color-white)",
                 },
               }}
             >
