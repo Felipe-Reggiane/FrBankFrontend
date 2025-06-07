@@ -6,14 +6,24 @@ interface MenuButtonProps {
   redirectTo: string;
   text: string;
   icon: React.ReactNode;
+  customOnClick?: () => void;
 }
 
-const MenuButton = ({ redirectTo, text, icon }: MenuButtonProps) => {
+const MenuButton = ({
+  redirectTo,
+  text,
+  icon,
+  customOnClick,
+}: MenuButtonProps) => {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log(`Redirecting to: ${redirectTo}`);
     router.push(redirectTo);
+    if (customOnClick) {
+      setTimeout(() => {
+        customOnClick();
+      }, 150);
+    }
   };
 
   return (

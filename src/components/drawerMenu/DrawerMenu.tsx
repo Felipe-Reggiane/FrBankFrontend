@@ -35,6 +35,7 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
   const handleLogout = () => {
     logoutDeleteToken();
     router.push("/");
+    handleDrawerClose();
   };
 
   const renderButtons = () => {
@@ -44,21 +45,25 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
           icon={<FolderSharedIcon />}
           text="Editar Perfil"
           redirectTo={"/profile"}
+          customOnClick={handleDrawerClose}
         ></MenuButton>
         <MenuButton
           icon={<PersonAddAltIcon />}
           text="Contas"
           redirectTo={"/accounts"}
+          customOnClick={handleDrawerClose}
         ></MenuButton>
         <MenuButton
           icon={<CurrencyExchangeIcon />}
           text="Transação"
           redirectTo={"/transactions"}
+          customOnClick={handleDrawerClose}
         ></MenuButton>
         <MenuButton
           icon={<ReceiptIcon />}
           text="Extrato"
           redirectTo={"/extract"}
+          customOnClick={handleDrawerClose}
         ></MenuButton>
         <div className={styles.menuFooter}>
           <ButtonDefault
