@@ -6,6 +6,7 @@ interface ButtonDefaultProps {
   text: string;
   icon?: React.ReactNode;
   disabled?: boolean;
+  smallButton?: boolean;
 }
 
 const ButtonDefault = ({
@@ -13,9 +14,14 @@ const ButtonDefault = ({
   text,
   icon,
   disabled,
+  smallButton,
 }: ButtonDefaultProps) => {
   return (
-    <div className={styles.buttonContainer}>
+    <div
+      className={
+        smallButton ? styles.smallButtonContainer : styles.buttonContainer
+      }
+    >
       <Button
         startIcon={icon ? icon : undefined}
         onClick={handleClick}

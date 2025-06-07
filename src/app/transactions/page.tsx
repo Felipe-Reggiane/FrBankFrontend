@@ -83,7 +83,9 @@ export default function Transactions() {
       <Autocomplete
         options={accounts}
         getOptionLabel={(option) =>
-          `${option.number} — Saldo: R$ ${Number(option.balance).toFixed(2)}`
+          `${option.number} — Saldo + Limite: R$ ${(
+            Number(option.balance) + Number(option.limit)
+          ).toFixed(2)}`
         }
         value={selectedAccount}
         onChange={(_event, newValue) => setSelectedAccount(newValue)}

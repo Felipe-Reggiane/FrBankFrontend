@@ -36,7 +36,6 @@ export default function RegisterScreen() {
 
   const onRegisterClick = async () => {
     try {
-      console.log(name, cpf, password, phone);
       const response = await createClient({ name, cpf, password, phone });
       if (!response.ok) {
         const data = await response.json();

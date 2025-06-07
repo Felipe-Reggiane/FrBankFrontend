@@ -35,7 +35,6 @@ const Profile = () => {
       setName(decoded.nome || "");
       setCpf(decoded.cpf || "");
       setUserId(decoded.id || null);
-      console.log("Dados do cliente:", decoded);
     }
   }, []);
 

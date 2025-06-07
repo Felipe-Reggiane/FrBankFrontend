@@ -154,6 +154,8 @@ const Extract = () => {
           maxWidth: isMobile ? 280 : isMenuStatic && !isTablet ? 430 : "100%",
           minWidth: 0,
           overflowX: "auto",
+          overflowY: transactions.length > 8 ? "scroll" : "hidden",
+          maxHeight: transactions.length > 8 ? 500 : "auto",
           margin: isMobile ? "0 auto" : undefined,
         }}
       >
@@ -173,7 +175,13 @@ const Extract = () => {
                   {new Date(tx.createdAt).toLocaleString("pt-BR")}
                 </TableCell>
                 <TableCell>
-                  {tx.type === "debit" ? "Débito" : "Crédito"}
+                  {tx.type === "debit"
+                    ? "Débito"
+                    : tx.type === "credit"
+                    ? "Crédito"
+                    : tx.type === "bonus"
+                    ? "Bônus"
+                    : "Taxa"}
                 </TableCell>
                 <TableCell>R$ {Number(tx.value).toFixed(2)}</TableCell>
                 <TableCell>{tx.account?.number}</TableCell>

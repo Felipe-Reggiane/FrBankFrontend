@@ -22,14 +22,12 @@ export default function Home() {
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
 
   const { loginSaveToken } = useAuth();
-  const API_URL = process.env._API_URL;
 
   const handleRegisterClick = () => {
     router.push("/register");
   };
 
   const onLoginClick = async () => {
-    console.log("API_URL", API_URL);
     try {
       const response = await login({ cpf, password });
       const data = await response.json();

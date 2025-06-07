@@ -1,4 +1,7 @@
 .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-inline: 20px;
 }
 
@@ -7,15 +10,34 @@
   justify-content: start;
   align-items: center;
   width: 100%;
-  padding-block: 20px;
+  padding: 20px;
+  gap: 20px;
 }
 
 .filterContainermobile{
-    display: flex;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-block: 20px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.limitContainer{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.limitContainerMobile{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
 }
 
 .buttonContainer {
@@ -32,4 +54,24 @@
   align-items: center;
   width: 100%;
   padding-block: 20px;
+}
+
+
+
+@media (max-width: 768px) {
+  .tableContainer {
+    width: 100%;
+    max-width: 300px; /* Largura máxima para mobile */
+    overflow-x: auto; /* Scroll lateral */
+  }
+
+  .table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .tableCell {
+    padding: 8px;
+    text-align: center;
+  }
 }

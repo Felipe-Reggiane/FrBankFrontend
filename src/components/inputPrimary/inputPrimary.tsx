@@ -124,7 +124,7 @@ const InputPrimary = ({
               borderBottomColor: "var(--color-gray-light)",
             },
           }),
-          // Label styles (aplicam para ambos)
+          // Label styles
           "& .MuiInputLabel-root": {
             color: "var(--color-gray-light)",
             "&.Mui-focused": {

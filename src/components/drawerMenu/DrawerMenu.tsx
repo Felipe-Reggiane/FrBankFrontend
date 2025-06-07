@@ -8,6 +8,7 @@ import MenuButton from "../menuButton/MenuButton";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import FolderSharedIcon from "@mui/icons-material/FolderShared";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import PriceChangeIcon from "@mui/icons-material/PriceChange";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import CloseIcon from "@mui/icons-material/Close";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -54,7 +55,7 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
           customOnClick={handleDrawerClose}
         ></MenuButton>
         <MenuButton
-          icon={<CurrencyExchangeIcon />}
+          icon={<PriceChangeIcon />}
           text="Transação"
           redirectTo={"/transactions"}
           customOnClick={handleDrawerClose}
@@ -63,6 +64,12 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
           icon={<ReceiptIcon />}
           text="Extrato"
           redirectTo={"/extract"}
+          customOnClick={handleDrawerClose}
+        ></MenuButton>
+        <MenuButton
+          icon={<CurrencyExchangeIcon />}
+          text="Transferencia"
+          redirectTo={"/transfer"}
           customOnClick={handleDrawerClose}
         ></MenuButton>
         <div className={styles.menuFooter}>
