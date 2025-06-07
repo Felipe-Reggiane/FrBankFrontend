@@ -164,6 +164,7 @@ const Extract = () => {
             <TableRow>
               <TableCell>Data</TableCell>
               <TableCell>Tipo</TableCell>
+              <TableCell>Operação</TableCell>
               <TableCell>Valor</TableCell>
               <TableCell>Número da Conta</TableCell>
             </TableRow>
@@ -182,6 +183,19 @@ const Extract = () => {
                     : tx.type === "bonus"
                     ? "Bônus"
                     : "Taxa"}
+                </TableCell>
+                <TableCell>
+                  {tx.operation === "transfer"
+                    ? "Transferência"
+                    : tx.operation === "deposit"
+                    ? "Depósito"
+                    : tx.operation === "withdraw"
+                    ? "Saque"
+                    : tx.operation === "bonus"
+                    ? "Bonus"
+                    : tx.operation === "tax"
+                    ? "Taxa"
+                    : "Não determinado"}
                 </TableCell>
                 <TableCell>R$ {Number(tx.value).toFixed(2)}</TableCell>
                 <TableCell>{tx.account?.number}</TableCell>
