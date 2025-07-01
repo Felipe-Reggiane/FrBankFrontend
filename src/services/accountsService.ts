@@ -81,3 +81,19 @@ export async function transfer(
   }
   return response.json();
 }
+
+export async function deleteAccounts(token: string, accountNumbers: string[]) {
+  const response = await apiFetch(`${API_URL}/accounts/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ accountNumbers }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.erro || "Erro ao deletar contas");
+  }
+}

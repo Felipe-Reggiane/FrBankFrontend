@@ -16,6 +16,7 @@ import {
 import { useAuthGuard } from "@/hooks/useAuthGuard";
 import {
   createAccount,
+  deleteAccounts,
   getAccounts,
   updateAccountLimit,
 } from "@/services/accountsService";
@@ -29,6 +30,7 @@ const Accounts = () => {
   const [page, setPage] = useState(0);
   const [filter, setFilter] = useState("");
   const [newLimit, setNewLimit] = useState("");
+  const [selectedAccounts, setSelectedAccounts] = useState<string[]>([]);
   const rowsPerPage = 6;
 
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -92,6 +94,44 @@ const Accounts = () => {
     } catch {
       alert("Erro ao atualizar o limite.");
     }
+  };
+
+  const handleDeleteAccounts = async () => {
+    if (selectedAccounts.length === 0) {
+      alert("Selecione pelo menos uma conta para deletar.");
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      "Tem certeza que deseja deletar as contas?"
+    );
+    if (!confirmDelete) return;
+
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      await deleteAccounts(token, selectedAccounts);
+      alert("Contas deletadas com sucesso!");
+      fetchAccounts();
+      setSelectedAccounts([]);
+    } catch (err) {
+      console.log("err", err);
+      if (err.message) {
+        alert(err.message);
+      } else {
+        alert("Erro ao deletar as contas.");
+      }
+      fetchAccounts();
+    }
+  };
+
+  const handleCheckboxChange = (accountNumber: string) => {
+    setSelectedAccounts((prev) =>
+      prev.includes(accountNumber)
+        ? prev.filter((number) => number !== accountNumber)
+        : [...prev, accountNumber]
+    );
   };
 
   const filteredAccounts = accounts.filter((account) =>
@@ -174,6 +214,9 @@ const Accounts = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell className={styles.checkboxColumn}>
+                Selecionar
+              </TableCell>
               <TableCell>Número da Conta</TableCell>
               <TableCell>Saldo</TableCell>
               <TableCell>Limite</TableCell>
@@ -182,6 +225,13 @@ const Accounts = () => {
           <TableBody>
             {paginatedAccounts.map((account) => (
               <TableRow key={account.id}>
+                <TableCell className={styles.checkboxColumn}>
+                  <input
+                    type="checkbox"
+                    checked={selectedAccounts.includes(account.number)}
+                    onChange={() => handleCheckboxChange(account.number)}
+                  />
+                </TableCell>
                 <TableCell>{account.number}</TableCell>
                 <TableCell>R$ {Number(account.balance).toFixed(2)}</TableCell>
                 <TableCell>R$ {Number(account.limit).toFixed(2)}</TableCell>
@@ -212,6 +262,12 @@ const Accounts = () => {
           handleClick={handleCreateAccount}
           text="Criar Nova Conta"
         />
+        {selectedAccounts && selectedAccounts.length > 0 && (
+          <ButtonDefault
+            handleClick={handleDeleteAccounts}
+            text="Deletar Contas"
+          />
+        )}
       </div>
     </div>
   );
