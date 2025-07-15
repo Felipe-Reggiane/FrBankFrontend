@@ -66,8 +66,8 @@
 @media (max-width: 768px) {
   .tableContainer {
     width: 100%;
-    max-width: 300px; /* Largura máxima para mobile */
-    overflow-x: auto; /* Scroll lateral */
+    max-width: 300px;
+    overflow-x: auto;
   }
 
   .table {

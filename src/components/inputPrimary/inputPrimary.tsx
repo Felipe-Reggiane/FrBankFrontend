@@ -11,6 +11,7 @@ interface InputProps {
   disabled?: boolean;
   setIsValid: (isValid: boolean) => void;
   inputVariant?: "outlined" | "filled" | "standard";
+  primaryColor?: boolean;
 }
 
 const InputPrimary = ({
@@ -21,6 +22,7 @@ const InputPrimary = ({
   disabled,
   setIsValid,
   inputVariant = "outlined",
+  primaryColor = false,
 }: InputProps) => {
   const [hasError, setHasError] = useState<boolean>(false);
 
@@ -77,27 +79,35 @@ const InputPrimary = ({
           ...(inputVariant === "outlined" && {
             "& .MuiOutlinedInput-root": {
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: hasError
+                borderColor: primaryColor
+                  ? "var(--color-primary)"
+                  : hasError
                   ? "var(--color-error)"
                   : "var(--color-gray-light)",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: hasError
+                borderColor: primaryColor
+                  ? "var(--color-primary)"
+                  : hasError
                   ? "var(--color-error)"
                   : "var(--color-gray-light)",
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: hasError
+                borderColor: primaryColor
+                  ? "var(--color-primary)"
+                  : hasError
                   ? "var(--color-error)"
                   : "var(--color-white)",
               },
             },
             "& .MuiOutlinedInput-input": {
-              color: "var(--color-white)",
+              color: primaryColor ? "var(--color-black)" : "var(--color-white)",
             },
             "& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline":
               {
-                borderColor: "var(--color-gray-light)",
+                borderColor: primaryColor
+                  ? "var(--color-primary)"
+                  : "var(--color-gray-light)",
               },
           }),
           // Standard styles
@@ -126,17 +136,27 @@ const InputPrimary = ({
           }),
           // Label styles
           "& .MuiInputLabel-root": {
-            color: "var(--color-gray-light)",
+            color: primaryColor
+              ? "var(--color-primary)"
+              : "var(--color-gray-light)",
             "&.Mui-focused": {
-              color: hasError ? "var(--color-error)" : "var(--color-white)",
+              color: primaryColor
+                ? "var(--color-primary)"
+                : hasError
+                ? "var(--color-error)"
+                : "var(--color-white)",
             },
             "&.Mui-error": {
               color: "var(--color-error)",
             },
           },
           "& .Mui-disabled": {
-            color: "var(--color-white) !important",
-            WebkitTextFillColor: "var(--color-white) !important",
+            color: primaryColor
+              ? "var(--color-primary)"
+              : "var(--color-white) !important",
+            WebkitTextFillColor: primaryColor
+              ? "var(--color-primary)"
+              : "var(--color-white) !important",
           },
         }}
       />

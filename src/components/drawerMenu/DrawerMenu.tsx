@@ -13,6 +13,8 @@ import ReceiptIcon from "@mui/icons-material/Receipt";
 import CloseIcon from "@mui/icons-material/Close";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ButtonDefault from "../buttonDefault/ButtonDefault";
+import PaymentsIcon from "@mui/icons-material/Payments";
+
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
@@ -70,6 +72,12 @@ const DrawerMenu = ({ data, drawerWidth }: DrawerMenuProps) => {
           icon={<CurrencyExchangeIcon />}
           text="Transferencia"
           redirectTo={"/transfer"}
+          customOnClick={handleDrawerClose}
+        ></MenuButton>
+        <MenuButton
+          icon={<PaymentsIcon />}
+          text="Câmbio"
+          redirectTo={"/currency"}
           customOnClick={handleDrawerClose}
         ></MenuButton>
         <div className={styles.menuFooter}>
